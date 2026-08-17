@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подъёмники для маломобильных людей — для дома, автомобиля и мобильные</title>
+<meta name="description" content="Электрические подъёмники для людей с ограниченной подвижностью: домашний «Второй друг», мобильный переносной «Первый друг» и подъёмник для посадки в автомобиль. Плавный подъём, работа от аккумулятора, до 150 кг.">
+<style>
+:root{
+  --blue:#0f4c81; --blue-2:#1668b3; --accent:#e8a020; --bg:#f5f8fb;
+  --text:#22303c; --muted:#5c6b78; --card:#ffffff; --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+img{max-width:100%;display:block}
+.container{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* Header */
+header{background:var(--blue);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px 20px;max-width:1120px;margin:0 auto;gap:10px}
+.logo{font-size:1.25rem;font-weight:700;letter-spacing:.5px}
+.logo span{color:var(--accent)}
+nav a{color:#dbe8f4;text-decoration:none;margin-left:18px;font-size:.95rem}
+nav a:hover{color:#fff}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0f4c81 0%,#1668b3 60%,#1c7fc4 100%);color:#fff;padding:70px 0 80px;text-align:center}
+.hero h1{font-size:2.4rem;max-width:820px;margin:0 auto 18px;line-height:1.25}
+.hero p{font-size:1.15rem;max-width:680px;margin:0 auto 30px;color:#dcebf7}
+.btn{display:inline-block;background:var(--accent);color:#1c1c1c;font-weight:700;padding:14px 34px;border-radius:40px;text-decoration:none;font-size:1.05rem;transition:.2s;border:none;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(232,160,32,.4)}
+.btn-outline{background:transparent;border:2px solid #fff;color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,.15);box-shadow:none}
+.hero-badges{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px 18px;font-size:.95rem}
+
+/* Sections */
+section{padding:64px 0}
+.section-title{text-align:center;font-size:2rem;margin-bottom:10px;color:var(--blue)}
+.section-sub{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 44px}
+
+/* Product cards */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.product{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 18px rgba(15,76,129,.08);display:flex;flex-direction:column;transition:.25s}
+.product:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(15,76,129,.16)}
+.product .tag{background:var(--accent);color:#1c1c1c;font-weight:700;font-size:.8rem;padding:5px 12px;position:absolute;top:14px;left:14px;border-radius:20px}
+.thumb-wrap{position:relative}
+.product img.thumb{width:100%;height:230px;object-fit:cover;cursor:zoom-in}
+.product-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.product h3{color:var(--blue);font-size:1.25rem;margin-bottom:8px}
+.product ul{list-style:none;margin:12px 0 18px}
+.product li{padding-left:26px;position:relative;margin-bottom:7px;font-size:.95rem}
+.product li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
+.product .price{margin-top:auto;font-size:1.1rem;font-weight:700;color:var(--blue)}
+.product .price small{font-weight:400;color:var(--muted)}
+.product .btn{align-self:flex-start;margin-top:14px;padding:11px 26px}
+
+/* Detailed blocks */
+.detail{background:var(--card);border-radius:var(--radius);padding:40px;margin-bottom:40px;box-shadow:0 4px 18px rgba(15,76,129,.08)}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.detail img.main{border-radius:10px;width:100%;object-fit:cover}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.gallery img{border-radius:8px;height:70px;object-fit:cover;cursor:pointer;opacity:.75;transition:.2s}
+.gallery img:hover{opacity:1}
+.detail h3{color:var(--blue);font-size:1.6rem;margin-bottom:6px}
+.detail .lead{color:var(--muted);margin-bottom:18px}
+.specs{width:100%;border-collapse:collapse;font-size:.93rem;margin:16px 0 22px}
+.specs th,.specs td{text-align:left;padding:9px 12px;border-bottom:1px solid #e4ebf2}
+.specs th{color:var(--muted);font-weight:600;width:58%}
+.specs td{font-weight:700;color:var(--blue)}
+.feat{display:flex;gap:12px;margin-bottom:12px}
+.feat .ico{flex:0 0 40px;height:40px;border-radius:10px;background:#e8f1f9;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.feat b{display:block;color:var(--blue)}
+
+/* Advantages */
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.adv{background:var(--card);border-radius:var(--radius);padding:26px;text-align:center;box-shadow:0 4px 14px rgba(15,76,129,.07)}
+.adv .ico{font-size:2rem;margin-bottom:12px}
+.adv h4{color:var(--blue);margin-bottom:8px}
+
+/* CTA / form */
+.cta{background:linear-gradient(135deg,#0f4c81,#1668b3);color:#fff;border-radius:var(--radius);padding:50px 40px;text-align:center}
+.cta h2{margin-bottom:12px}
+.cta p{color:#dcebf7;margin-bottom:26px}
+#form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+#form input,#form select{padding:13px 18px;border-radius:10px;border:none;font-size:1rem;min-width:220px}
+#form .btn{	background:#fff;color:var(--blue)}
+.form-note{font-size:.85rem;color:#b9d2e8;margin-top:14px}
+#formOk{display:none;margin-top:16px;font-weight:700;color:#ffe1a6}
+
+footer{background:#0b355c;color:#9fbcd6;padding:30px 0;text-align:center;font-size:.9rem}
+
+/* Lightbox */
+#lightbox{position:fixed;inset:0;background:rgba(10,25,40,.9);display:none;align-items:center;justify-content:center;z-index:100;cursor:zoom-out;padding:30px}
+#lightbox img{max-width:92%;max-height:92%;border-radius:10px}
+
+@media(max-width:820px){
+  .detail-grid{grid-template-columns:1fr}
+  .hero h1{font-size:1.7rem}
+  nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Подъёмники<span>·</span>ДРУГ</div>
+    <nav>
+      <a href="#products">Модели</a>
+      <a href="#home">Для дома</a>
+      <a href="#auto">Для автомобиля</a>
+      <a href="#mobile">Мобильный</a>
+      <a href="#adv">Преимущества</a>
+      <a href="#order">Заказать</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Свобода передвижения для ваших близких</h1>
+    <p>Электрические подъёмники для людей с ограниченной подвижностью: бережный подъём нажатием кнопки, работа от аккумулятора, безопасность до 150 кг.</p>
+    <a href="#products" class="btn">Выбрать подъёмник</a>
+    <a href="#order" class="btn btn-outline" style="margin-left:10px">Получить консультацию</a>
+    <div class="hero-badges">
+      <div class="badge">🔋 Работа от аккумулятора</div>
+      <div class="badge">🛡️ Плавный бесступенчатый подъём</div>
+      <div class="badge">🏠 Для дома, больницы и авто</div>
+      <div class="badge">📜 Паспорт и инструкция в комплекте</div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <h2 class="section-title">Три решения — одна забота</h2>
+    <p class="section-sub">Выберите подъёмник под вашу задачу: стационарный для дома и спальни, мобильный переносной или для посадки в автомобиль.</p>
+    <div class="products">
+      <div class="product">
+        <div class="thumb-wrap"><span class="tag">Для дома</span>
+          <img class="thumb" src="images/home-1.jpg" alt="Домашний подъёмник Второй друг" onclick="lb(this)">
+        </div>
+        <div class="product-body">
+          <h3>«Второй друг» — для дома</h3>
+          <p style="font-size:.95rem;color:var(--muted)">Подъёмник с пристенным упором для спальни и ванной. Максимальная нагрузка 150 кг.</p>
+          <ul>
+            <li>Пристенный упор — не занимает место на полу</li>
+            <li>Складные колена, радиус поворота до 1,9 м</li>
+            <li>Диапазон подъёма 490 мм</li>
+          </ul>
+          <div class="price">Цена: по запросу <small>· доставка по РФ</small></div>
+          <a href="#home" class="btn">Подробнее</a>
+        </div>
+      </div>
+      <div class="product">
+        <div class="thumb-wrap"><span class="tag">Для авто</span>
+          <img class="thumb" src="images/auto-4.jpg" alt="Подъёмник для посадки в автомобиль" onclick="lb(this)">
+        </div>
+        <div class="product-body">
+          <h3>Подъёмник для автомобиля</h3>
+          <p style="font-size:.95rem;color:var(--muted)">Помогает пересесть из кресла в салон легкового автомобиля без усилий помощника.</p>
+          <ul>
+            <li>Посадка в машину без подъёма на руках</li>
+            <li>Компактная стрела, не мешает в салоне</li>
+            <li>Простая установка, питание 24 В</li>
+          </ul>
+          <div class="price">Цена: по запросу <small>· доставка по РФ</small></div>
+          <a href="#auto" class="btn">Подробнее</a>
+        </div>
+      </div>
+      <div class="product">
+        <div class="thumb-wrap"><span class="tag">Мобильный</span>
+          <img class="thumb" src="images/mobile-2.jpg" alt="Мобильный подъёмник Первый друг" onclick="lb(this)">
+        </div>
+        <div class="product-body">
+          <h3>«Первый друг» — мобильный переносной</h3>
+          <p style="font-size:.95rem;color:var(--muted)">Переносной подъёмник на колёсной базе: кровать → кресло → ванная. Нагрузка 100 кг.</p>
+          <ul>
+            <li>Вес всего 23 кг — легко перевозить</li>
+            <li>Раздвижная база под любую мебель</li>
+            <li>Аккумулятор 12 В или сеть 220 В</li>
+          </ul>
+          <div class="price">Цена: по запросу <small>· доставка по РФ</small></div>
+          <a href="#mobile" class="btn">Подробнее</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOME -->
+<section id="home" style="padding-top:0">
+  <div class="container">
+    <div class="detail">
+      <div class="detail-grid">
+        <div>
+          <img class="main" src="images/home-2.jpg" alt="Подъёмник Второй друг — общий вид" onclick="lb(this)">
+          <div class="gallery">
+            <img src="images/home-1.jpg" onclick="lb(this)" alt="Второй друг">
+            <img src="images/home-4.jpg" onclick="lb(this)" alt="Комплектация">
+            <img src="images/home-5.jpg" onclick="lb(this)" alt="Колена">
+            <img src="images/home-3.png" onclick="lb(this)" alt="Технические данные">
+          </div>
+        </div>
+        <div>
+          <h3>«Второй друг» — домашний подъёмник</h3>
+          <p class="lead">Стационарный подъёмник с пристенным упором и складными коленьями: поднимает пациента с кровати, перемещает в кресло или ванную в пределах комнаты.</p>
+          <table class="specs">
+            <tr><th>Максимальный вес пациента</th><td>150 кг</td></tr>
+            <tr><th>Тип подъёма</th><td>Плавный, бесступенчатый</td></tr>
+            <tr><th>Диапазон подъёма</th><td>490 мм</td></tr>
+            <tr><th>Радиус поворота</th><td>1015–1895 мм</td></tr>
+            <tr><th>Питание</th><td>АКБ 24 В · 8 А·ч (Li-Ion)</td></tr>
+            <tr><th>Режим работы</th><td>2 мин подъём / 18 мин пауза</td></tr>
+            <tr><th>Защита</th><td>IP 44 (привод и пульт)</td></tr>
+          </table>
+          <div class="feat"><div class="ico">🧱</div><div><b>Пристенный упор</b>Крепится к стене на высоте ~530 мм, регулируется по высоте, вес конструкции 5 кг.</div></div>
+          <div class="feat"><div class="ico">🔌</div><div><b>Автономность</b>Литий-ионный аккумулятор: 1000 циклов заряд-разряд, индикатор заряда на корпусе.</div></div>
+          <div class="feat"><div class="ico">🎒</div><div><b>Комплектация</b>Подъёмный механизм, пристенный упор, колена, опорная дуга, слинг с ремнями.</div></div>
+          <a href="#order" class="btn" style="margin-top:16px">Заказать «Второй друг»</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTO -->
+<section id="auto" style="padding-top:0">
+  <div class="container">
+    <div class="detail">
+      <div class="detail-grid">
+        <div>
+          <img class="main" src="images/auto-4.jpg" alt="Подъёмник для посадки в автомобиль" onclick="lb(this)">
+          <div class="gallery">
+            <img src="images/auto-1.jpg" onclick="lb(this)" alt="Подъёмник в авто">
+            <img src="images/auto-2.jpg" onclick="lb(this)" alt="Посадка в авто">
+            <img src="images/auto-3.jpg" onclick="lb(this)" alt="Стрела подъёмника">
+          </div>
+        </div>
+        <div>
+          <h3>Подъёмник для автомобиля</h3>
+          <p class="lead">Автомобильная версия подъёмника «Второй друг»: бережно пересаживает человека из кресла в салон легкового автомобиля. Помощнику больше не нужно поднимать пациента на руках.</p>
+          <table class="specs">
+            <tr><th>Максимальный вес пациента</th><td>до 150 кг</td></tr>
+            <tr><th>Тип подъёма</th><td>Электрический, бесступенчатый</td></tr>
+            <tr><th>Питание</th><td>АКБ 24 В · 8 А·ч</td></tr>
+            <tr><th>Управление</th><td>Пульт, защита IP 44</td></tr>
+            <tr><th>Посадка</th><td>Из кресла/кровати в салон авто и обратно</td></tr>
+          </table>
+          <div class="feat"><div class="ico">🚗</div><div><b>Для легковых автомобилей</b>Компактная стрела аккуратно размещает человека в водительское или пассажирское кресло.</div></div>
+          <div class="feat"><div class="ico">💪</div><div><b>Без нагрузки на спину помощника</b>Исключает травмы тех, кто ухаживает: подъём выполняет электропривод.</div></div>
+          <div class="feat"><div class="ico">🧰</div><div><b>Быстрая установка</b>Монтируется в салоне без доработок автомобиля; sling-ремни регулируются пряжками.</div></div>
+          <a href="#order" class="btn" style="margin-top:16px">Заказать подъёмник для авто</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE -->
+<section id="mobile" style="padding-top:0">
+  <div class="container">
+    <div class="detail">
+      <div class="detail-grid">
+        <div>
+          <img class="main" src="images/mobile-1.jpg" alt="Мобильный подъёмник Первый друг" onclick="lb(this)">
+          <div class="gallery">
+            <img src="images/mobile-2.jpg" onclick="lb(this)" alt="Первый друг">
+            <img src="images/mobile-3.jpg" onclick="lb(this)" alt="Первый друг">
+            <img src="images/mobile-4.jpg" onclick="lb(this)" alt="Первый друг">
+          </div>
+        </div>
+        <div>
+          <h3>«Первый друг» — мобильный переносной подъёмник</h3>
+          <p class="lead">Лёгкий подъёмник на колёсной базе для дома и медицинских учреждений: перемещение пациента кровать ↔ кресло ↔ ванная в пределах помещения.</p>
+          <table class="specs">
+            <tr><th>Максимальный вес пациента</th><td>100 кг</td></tr>
+            <tr><th>Вес подъёмника</th><td>23 кг</td></tr>
+            <tr><th>Высота подъёма стрелы</th><td>до 1630 мм</td></tr>
+            <tr><th>Ширина базы</th><td>370–840 мм (раздвижная)</td></tr>
+            <tr><th>Питание</th><td>АКБ 12 В · 5 А·ч или сеть 220 В</td></tr>
+            <tr><th>Тип подъёма</th><td>Плавный, бесступенчатый</td></tr>
+          </table>
+          <div class="feat"><div class="ico">🦼</div><div><b>Раздвижная база</b>Педаль разводит лапы для устойчивости или сводит для проезда под кровать и узкую мебель.</div></div>
+          <div class="feat"><div class="ico">🛞</div><div><b>Колёса с тормозами</b>Задние колёса блокируются ножным тормозом — надёжная фиксация при подъёме.</div></div>
+          <div class="feat"><div class="ico">🎮</div><div><b>Простое управление</b>Пульт: пока кнопка нажата — длится подъём или спуск, отпустили — остановка.</div></div>
+          <a href="#order" class="btn" style="margin-top:16px">Заказать «Первый друг»</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section id="adv" style="padding-top:0">
+  <div class="container">
+    <h2 class="section-title">Почему выбирают нас</h2>
+    <p class="section-sub">Мы производим подъёмники малыми сериями и сопровождаем каждого покупателя от выбора до обслуживания.</p>
+    <div class="adv-grid">
+      <div class="adv"><div class="ico">🤝</div><h4>Помощь с выбором</h4><p>Подскажем модель под вес пациента, планировку квартиры или тип автомобиля.</p></div>
+      <div class="adv"><div class="ico">⚡</div><h4>Электропривод</h4><p>Плавный бесступенчатый подъём без рывков — комфортно и безопасно.</p></div>
+      <div class="adv"><div class="ico">🔋</div><h4>Автономность</h4><p>Аккумулятор позволяет работать независимо от розетки.</p></div>
+      <div class="adv"><div class="ico">📄</div><h4>Документы</h4><p>Каждое изделие — с паспортом, инструкцией и упаковочным листом.</p></div>
+      <div class="adv"><div class="ico">🚚</div><h4>Доставка по РФ</h4><p>Аккуратная упаковка, отправка в любой регион.</p></div>
+      <div class="adv"><div class="ico">🛡️</div><h4>Сервис</h4><p>Консультации по эксплуатации и запасным частям на весь срок службы.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section id="order" style="padding-top:0">
+  <div class="container">
+    <div class="cta" id="orderBox">
+      <h2>Оставьте заявку — перезвоним за 15 минут</h2>
+      <p>Расскажем цены, поможем выбрать модель и рассчитаем доставку.</p>
+      <form id="form" onsubmit="return sendOrder(event)">
+        <input type="text" id="fname" placeholder="Ваше имя" required>
+        <input type="tel" id="fphone" placeholder="Телефон" required>
+        <select id="fmodel">
+          <option>«Второй друг» — для дома</option>
+          <option>Подъёмник для автомобиля</option>
+          <option>«Первый друг» — мобильный</option>
+          <option>Пока не выбрал(а) — нужна консультация</option>
+        </select>
+        <button type="submit" class="btn">Отправить заявку</button>
+      </form>
+      <div id="formOk">✅ Спасибо! Заявка принята — мы свяжемся с вами в ближайшее время.</div>
+      <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Подъёмники для маломобильных людей · Производство и продажа · 2026</p>
+    <p style="margin-top:6px">Перед использованием ознакомьтесь с паспортом изделия и инструкцией по эксплуатации.</p>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="this.style.display='none'"><img id="lbImg" src="" alt=""></div>
+
+<script>
+function lb(el){
+  document.getElementById('lbImg').src = el.src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+function sendOrder(e){
+  e.preventDefault();
+  // Здесь подключается ваш обработчик заявок (CRM, Telegram-бот, e-mail API и т.п.)
+  document.getElementById('form').style.display = 'none';
+  document.getElementById('formOk').style.display = 'block';
+  return false;
+}
+</script>
+</body>
+</html>
