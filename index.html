@@ -342,9 +342,8 @@ footer{background:#0b355c;color:#9fbcd6;padding:30px 0;text-align:center;font-si
 
 <script>
 // ====== НАСТРОЙКА ОТПРАВКИ ЗАЯВОК ======
-// 1. Настройте Google Apps Script по инструкции в файле telegram-proxy.gs
-// 2. Вставьте URL веб-приложения сюда:
-const FORM_SUBMIT_URL = "ВСТАВЬТЕ_URL_GOOGLE_APPS_SCRIPT";
+// Заявки отправляются через Google Apps Script → Telegram
+const FORM_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbwFxrJxYNHWorSDZTDYoofKOn53rmz6wVjIU-uM0m1MSzFzZ7dR0xlMyyG8herdq7dmKQ/exec";
 
 function lb(el){
   document.getElementById('lbImg').src = el.src;
