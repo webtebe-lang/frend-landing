@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Подъёмники для маломобильных людей — для дома, автомобиля и мобильные</title>
 <meta name="description" content="Электрические подъёмники для людей с ограниченной подвижностью: домашний «Второй друг», мобильный переносной «Первый друг» и подъёмник для посадки в автомобиль. Плавный подъём, работа от аккумулятора, до 150 кг.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
 :root{
   --blue:#0f4c81; --blue-2:#1668b3; --accent:#e8a020; --bg:#f5f8fb;
@@ -301,10 +302,8 @@ footer{background:#0b355c;color:#9fbcd6;padding:30px 0;text-align:center;font-si
     <div class="adv-grid">
       <div class="adv"><div class="ico">🤝</div><h4>Помощь с выбором</h4><p>Подскажем модель под вес пациента, планировку квартиры или тип автомобиля.</p></div>
       <div class="adv"><div class="ico">⚡</div><h4>Электропривод</h4><p>Плавный бесступенчатый подъём без рывков — комфортно и безопасно.</p></div>
-      <div class="adv"><div class="ico">🔋</div><h4>Автономность</h4><p>Аккумулятор позволяет работать независимо от розетки.</p></div>
       <div class="adv"><div class="ico">📄</div><h4>Документы</h4><p>Каждое изделие — с паспортом, инструкцией и упаковочным листом.</p></div>
       <div class="adv"><div class="ico">🚚</div><h4>Доставка по РФ</h4><p>Аккуратная упаковка, отправка в любой регион.</p></div>
-      <div class="adv"><div class="ico">🛡️</div><h4>Сервис</h4><p>Консультации по эксплуатации и запасным частям на весь срок службы.</p></div>
     </div>
   </div>
 </section>
@@ -342,13 +341,37 @@ footer{background:#0b355c;color:#9fbcd6;padding:30px 0;text-align:center;font-si
 <div id="lightbox" onclick="this.style.display='none'"><img id="lbImg" src="" alt=""></div>
 
 <script>
+// ====== НАСТРОЙКА TELEGRAM-БОТА ======
+// 1) Создайте бота у @BotFather в Telegram — он выдаст токен (вставьте вместо ...).
+// 2) Напишите боту любое сообщение, затем откройте
+//    https://api.telegram.org/bot<ТОКЕН>/getUpdates и скопируйте значение "chat":{"id": ...}
+// 3) Вставьте оба значения ниже.
+const TG_BOT_TOKEN = "СЮДА_ТОКЕН_БОТА";   // например "1234567890:AAE..."
+const TG_CHAT_ID   = "СЮДА_CHAT_ID";      // например "123456789"
+
 function lb(el){
   document.getElementById('lbImg').src = el.src;
   document.getElementById('lightbox').style.display = 'flex';
 }
-function sendOrder(e){
+async function sendOrder(e){
   e.preventDefault();
-  // Здесь подключается ваш обработчик заявок (CRM, Telegram-бот, e-mail API и т.п.)
+  const name  = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const model = document.getElementById('fmodel').value;
+  if (!TG_BOT_TOKEN.startsWith("СЮДА") && !TG_CHAT_ID.startsWith("СЮДА")) {
+    const text =
+      "🔔 Новая заявка с сайта\n\n" +
+      "👤 Имя: " + name + "\n" +
+      "📞 Телефон: " + phone + "\n" +
+      "📦 Модель: " + model;
+    try {
+      await fetch("https://api.telegram.org/bot" + TG_BOT_TOKEN + "/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text })
+      });
+    } catch (err) { console.error("Telegram error:", err); }
+  }
   document.getElementById('form').style.display = 'none';
   document.getElementById('formOk').style.display = 'block';
   return false;
