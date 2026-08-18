@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Telegram Avatar Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        canvas {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background: white;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background: #0f4c81;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #1668b3;
+        }
+        .info {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h2>Аватарка для Telegram-группы</h2>
+        <p>512×512 пикселей, оптимизирована для Telegram</p>
+    </div>
+    <canvas id="canvas" width="512" height="512"></canvas>
+    <button onclick="downloadImage()">💾 Скачать PNG</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Фон с закруглёнными углами
+        ctx.fillStyle = '#0f4c81';
+        roundRect(ctx, 0, 0, 512, 512, 80);
+        ctx.fill();
+
+        // Градиентный акцент
+        const gradient = ctx.createRadialGradient(256, 256, 50, 256, 256, 200);
+        gradient.addColorStop(0, 'rgba(28, 127, 196, 0.3)');
+        gradient.addColorStop(1, 'rgba(22, 104, 179, 0.1)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(256, 256, 200, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Стрелка подъёмника
+        ctx.strokeStyle = '#e8a020';
+        ctx.lineWidth = 24;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        // Вертикальная линия
+        ctx.beginPath();
+        ctx.moveTo(256, 176);
+        ctx.lineTo(256, 336);
+        ctx.stroke();
+
+        // Стрелка вверх
+        ctx.beginPath();
+        ctx.moveTo(206, 206);
+        ctx.lineTo(256, 156);
+        ctx.lineTo(306, 206);
+        ctx.stroke();
+
+        // Основание (человек)
+        ctx.fillStyle = '#e8a020';
+        ctx.beginPath();
+        ctx.arc(256, 356, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Декоративный элемент - уведомление
+        ctx.fillStyle = '#e8a020';
+        ctx.beginPath();
+        ctx.arc(336, 176, 28, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Восклицательный знак
+        ctx.fillStyle = '#0f4c81';
+        ctx.font = 'bold 32px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('!', 336, 176);
+
+        // Текст "ЗАЯВКИ"
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 48px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('ЗАЯВКИ', 256, 450);
+
+        // Функция для закруглённых углов
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        // Функция скачивания
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'telegram-avatar.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>

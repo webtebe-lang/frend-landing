@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Фон -->
+  <rect width="512" height="512" rx="80" fill="#0f4c81"/>
+
+  <!-- Градиентный акцент -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1668b3;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#1c7fc4;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="200" fill="url(#grad)"/>
+
+  <!-- Стрелка подъёмника -->
+  <g transform="translate(256, 256)">
+    <!-- Вертикальная линия -->
+    <line x1="0" y1="-80" x2="0" y2="80" stroke="#e8a020" stroke-width="24" stroke-linecap="round"/>
+
+    <!-- Стрелка вверх -->
+    <polyline points="-50,-50 0,-100 50,-50" stroke="#e8a020" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- Основание (человек) -->
+    <circle cx="0" cy="100" r="20" fill="#e8a020"/>
+
+    <!-- Декоративные элементы - уведомление -->
+    <circle cx="80" cy="-80" r="28" fill="#e8a020"/>
+    <text x="80" y="-70" text-anchor="middle" font-size="32" font-weight="bold" fill="#0f4c81">!</text>
+  </g>
+
+  <!-- Текст внизу -->
+  <text x="256" y="450" text-anchor="middle" font-size="48" font-weight="bold" fill="#ffffff" font-family="Arial, sans-serif">ЗАЯВКИ</text>
+</svg>

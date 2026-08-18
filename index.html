@@ -341,37 +341,43 @@ footer{background:#0b355c;color:#9fbcd6;padding:30px 0;text-align:center;font-si
 <div id="lightbox" onclick="this.style.display='none'"><img id="lbImg" src="" alt=""></div>
 
 <script>
-// ====== НАСТРОЙКА TELEGRAM-БОТА ======
-// 1) Создайте бота у @BotFather в Telegram — он выдаст токен (вставьте вместо ...).
-// 2) Напишите боту любое сообщение, затем откройте
-//    https://api.telegram.org/bot<ТОКЕН>/getUpdates и скопируйте значение "chat":{"id": ...}
-// 3) Вставьте оба значения ниже.
-const TG_BOT_TOKEN = "СЮДА_ТОКЕН_БОТА";   // например "1234567890:AAE..."
-const TG_CHAT_ID   = "СЮДА_CHAT_ID";      // например "123456789"
+// ====== НАСТРОЙКА ОТПРАВКИ ЗАЯВОК ======
+// 1. Настройте Google Apps Script по инструкции в файле telegram-proxy.gs
+// 2. Вставьте URL веб-приложения сюда:
+const FORM_SUBMIT_URL = "ВСТАВЬТЕ_URL_GOOGLE_APPS_SCRIPT";
 
 function lb(el){
   document.getElementById('lbImg').src = el.src;
   document.getElementById('lightbox').style.display = 'flex';
 }
+
 async function sendOrder(e){
   e.preventDefault();
   const name  = document.getElementById('fname').value.trim();
   const phone = document.getElementById('fphone').value.trim();
   const model = document.getElementById('fmodel').value;
-  if (!TG_BOT_TOKEN.startsWith("СЮДА") && !TG_CHAT_ID.startsWith("СЮДА")) {
-    const text =
-      "🔔 Новая заявка с сайта\n\n" +
-      "👤 Имя: " + name + "\n" +
-      "📞 Телефон: " + phone + "\n" +
-      "📦 Модель: " + model;
+
+  // Вариант 1: Google Apps Script (если вставлен URL выше)
+  if (!FORM_SUBMIT_URL.startsWith("ВСТАВЬТЕ")) {
     try {
-      await fetch("https://api.telegram.org/bot" + TG_BOT_TOKEN + "/sendMessage", {
+      await fetch(FORM_SUBMIT_URL, {
+        method: "POST",
+        mode: "no-cors", // Google Apps Script требует no-cors
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, model })
+      });
+    } catch (err) { console.error("Submit error:", err); }
+  } else {
+    // Вариант 2: локальный сервер server.js (POST /order на том же домене)
+    try {
+      await fetch("/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text })
+        body: JSON.stringify({ name, phone, model })
       });
-    } catch (err) { console.error("Telegram error:", err); }
+    } catch (err) { console.error("Submit error:", err); }
   }
+
   document.getElementById('form').style.display = 'none';
   document.getElementById('formOk').style.display = 'block';
   return false;
